@@ -1,82 +1,82 @@
-
 .register-container {
-    max-width: 450px;
-    margin: 50px auto;
-    padding: 30px;
-    background-color: #ffffffb4;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    font-family: 'Arial', sans-serif;
-  }
-  
-  h2 {
-    text-align: center;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  /* Estilo de los campos de entrada */
-  input {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 2px solid #fe0101;
-    border-radius: 6px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-  }
-  
-  input:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  /* Estilo de las etiquetas */
-  label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 1rem;
-    color: #555;
-  }
-  
-  /* Botón de envío */
-  button {
-    width: 100%;
-    padding: 12px;
-    font-size: 1rem;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #218838;
-  }
-  
-  /* Estilo de los mensajes de error */
-  p {
-    color: red;
-    text-align: center;
-    font-size: 0.9rem;
-  }
-  
-  /* Estilo adicional para hacer el formulario más amigable en dispositivos móviles */
-  @media (max-width: 768px) {
-    .register-container {
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffffb4;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* campos de entrada */
+input {
+  max-width: 400px; 
+  width: 100%; 
+  padding: 12px;
+  margin: 20px auto; 
+  border: 2px solid #fe0101;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* etiquetas */
+label {
+  display: block;
+  margin-bottom: 10px; 
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Botón de envío */
+button {
+  max-width: 400px; 
+  width: 100%; 
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 20px auto; 
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+/* mensajes de error */
+p {
+  color: red;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .register-container {
       padding: 20px;
-    }
-  
-    input, button {
+  }
+
+  input, button {
       font-size: 0.9rem;
       padding: 10px;
-    }
-  
-    h2 {
-      font-size: 1.5rem;
-    }
   }
-  
+
+  h2 {
+      font-size: 1.5rem;
+  }
+}

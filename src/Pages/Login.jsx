@@ -2,44 +2,64 @@ import React, { useState } from 'react';
 import "../Components/Styles/Login.css";
 
 export const Login = () => {
-  const [Contraseña, setpassword] = useState("");
-  const [usuario, setusuario] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  // Manejar el cambio en el campo de usuario
-  const handleUsuarioChange = (e) => {
-    setusuario(e.target.value);
-  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  // Manejar el cambio en el campo de contraseña
-  const handlePasswordChange = (e) => {
-    setpassword(e.target.value);
-  };
+    // Validaciones simples
+    if (!email) {
+      setError('Please enter your email');
+      return;
+    }
 
-  // Manejar el click en el botón de iniciar sesión
-  const handleLoginClick = (e) => {
-    e.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
-    const usuarioLogin = { Contraseña, usuario };
-    console.log('Datos de inicio de sesión:', usuarioLogin);
-    // Aquí puedes realizar cualquier acción necesaria como enviar los datos al backend
+    if (!password) {
+      setError('Please enter your password');
+      return;
+    }
+
+    setError('');
+    // Aquí manejarías la autenticación de usuario
+    console.log({
+      email,
+      password
+    });
   };
 
   return (
-    <div>
-      <form>
-        <input
-          type="text"
-          placeholder='Ingresa tu nombre'
-          value={usuario}
-          onChange={handleUsuarioChange}
-        />
-        <input
-          type="password"
-          placeholder='Ingresa tu Contraseña'
-          value={Contraseña}
-          onChange={handlePasswordChange}
-        />
-        <button onClick={handleLoginClick}>Iniciar sesión</button>
+    <div className="login-container">
+      <h2>LOGIN</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input 
+            type="email" 
+            id="email" 
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+            required 
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input 
+            type="password" 
+            id="password" 
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)} 
+            required 
+          />
+        </div>
+
+        {error && <p>{error}</p>}
+
+        <button type="submit">Login</button>
       </form>
     </div>
   );
-}
+};
+
+export default Login;
