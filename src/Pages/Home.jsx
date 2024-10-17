@@ -8,7 +8,7 @@ export const Home = () => {
     <div className='Home'>
         
 
-        <input type="text" placeholder='Buscar productos...' />
+        <input type="text" placeholder='Search for products...' />
 
         <Products></Products>
 

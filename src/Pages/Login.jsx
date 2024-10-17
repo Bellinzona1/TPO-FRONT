@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import "../Components/Styles/Login.css";
+import { login } from '../Services/Auth.service';
 
 export const Login = () => {
-  const [email, setEmail] = useState('');
+  const [username, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Validaciones simples
-    if (!email) {
+    if (!username) {
       setError('Please enter your email');
       return;
     }
@@ -21,11 +24,16 @@ export const Login = () => {
     }
 
     setError('');
-    // Aquí manejarías la autenticación de usuario
-    console.log({
-      email,
-      password
-    });
+
+    login({ username, password })
+      .then(response => {
+        console.log("Login successful:", response);
+        
+      })
+      .catch(err => {
+        console.error("Login failed:", err);
+        setError("Login failed. Please check your credentials.");
+      });
   };
 
   return (
@@ -35,9 +43,9 @@ export const Login = () => {
         <div>
           <label htmlFor="email">Email:</label>
           <input 
-            type="email" 
-            id="email" 
-            value={email} 
+            type="text" 
+            id="username" 
+            value={username} 
             onChange={(e) => setEmail(e.target.value)} 
             required 
           />

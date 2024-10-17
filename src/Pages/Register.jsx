@@ -1,12 +1,18 @@
 import { useState } from 'react';
+import { register } from '../Services/Auth.service';
 import "../Components/Styles/Register.css"; 
 
 export const Register = () => {
-  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
+  const [firstname, setFirstname] = useState('');
+  const [surname, setSurname] = useState('');
+  const [phone_number, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [role, setRole] = useState('USER');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,11 +23,27 @@ export const Register = () => {
     }
 
     setError('');
-    console.log({
-      name,
+    setSuccess('');
+
+    const userData = {
+      username,
+      firstname,
+      surname,
+      phone_number,
       email,
-      password
-    });
+      password,
+      Role: role
+    };
+
+    register(userData)
+      .then(response => {
+        console.log("Registration successful:", response);
+        setSuccess("Registration successful! You can now log in.");
+      })
+      .catch(err => {
+        console.error("Registration failed:", err);
+        setError("Registration failed. Please check your details.");
+      });
   };
 
   return (
@@ -29,12 +51,45 @@ export const Register = () => {
       <h2>REGISTER</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="username">Username:</label>
           <input 
             type="text" 
-            id="name" 
-            value={name} 
-            onChange={(e) => setName(e.target.value)} 
+            id="username" 
+            value={username} 
+            onChange={(e) => setUsername(e.target.value)} 
+            required 
+          />
+        </div>
+
+        <div>
+          <label htmlFor="firstname">First Name:</label>
+          <input 
+            type="text" 
+            id="firstname" 
+            value={firstname} 
+            onChange={(e) => setFirstname(e.target.value)} 
+            required 
+          />
+        </div>
+
+        <div>
+          <label htmlFor="surname">Surname:</label>
+          <input 
+            type="text" 
+            id="surname" 
+            value={surname} 
+            onChange={(e) => setSurname(e.target.value)} 
+            required 
+          />
+        </div>
+
+        <div>
+          <label htmlFor="phone_number">Phone Number:</label>
+          <input 
+            type="tel" 
+            id="phone_number" 
+            value={phone_number} 
+            onChange={(e) => setPhoneNumber(e.target.value)} 
             required 
           />
         </div>
@@ -62,7 +117,7 @@ export const Register = () => {
         </div>
 
         <div>
-          <label htmlFor="confirmPassword">Confirm password:</label>
+          <label htmlFor="confirmPassword">Confirm Password:</label>
           <input 
             type="password" 
             id="confirmPassword" 
@@ -72,12 +127,12 @@ export const Register = () => {
           />
         </div>
 
-        {error && <p>{error}</p>}
+        {error && <p className="error">{error}</p>}
+        {success && <p className="success">{success}</p>}
 
         <button type="submit">Register</button>
       </form>
     </div>
-    
   );
 };
 

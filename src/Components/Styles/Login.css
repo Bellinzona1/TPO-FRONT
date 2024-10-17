@@ -10,12 +10,7 @@
 }
 
 /* Título */
-h2 {
-  text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-  color: #333;
-}
+
 
 /* Campos de entrada */
 input {
@@ -58,12 +53,6 @@ button:hover {
   background-color: #218838;
 }
 
-/* Mensajes de error */
-p {
-  color: red;
-  text-align: center;
-  font-size: 0.9rem;
-}
 
 /* Ajustes para pantallas pequeñas */
 @media (max-width: 768px) {

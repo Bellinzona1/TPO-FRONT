@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Styles/Navbar.css';
 
-export const Navbar = () => {
+export const Navbar = ({ userAplication }) => {
   const [showSubmenu, setShowSubmenu] = useState(false);
 
   const toggleSubmenu = () => {
@@ -27,7 +27,9 @@ export const Navbar = () => {
               </div>
             )}
           </div>
-          <div className="UserNav">
+
+
+          {userAplication ? <div className="UserNav">
 
             <img src="https://cdn-icons-png.flaticon.com/512/6676/6676016.png" alt="" />
 
@@ -35,7 +37,12 @@ export const Navbar = () => {
 
 
 
-          </div>
+
+          </div> : <a href='/login'>Iniciar sesion</a>}
+
+
+
+
         </div>
       </div>
     </div>
