@@ -43,9 +43,11 @@
 .Navbar .options {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
+    justify-content: end;
+    gap: 40px;
     position: relative;
+    width: 35%;
+   
 }
 
 
@@ -98,4 +100,30 @@
     cursor: pointer;
     filter: invert(1); /* Invertir el color */
 
+}
+
+
+.btnsLogOut{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.btnsLogOut a {
+    padding: 8px 8px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    margin: 0 10px;
+    color: black ; 
+    font-size: 0.8rem;
+}
+
+.btnsLogOut .iniciarSesion{
+    background-color: #E67B07;
+}
+
+
+.btnsLogOut .RegisterBtn{
+    color: black !important;
 }

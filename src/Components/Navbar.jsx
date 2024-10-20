@@ -38,7 +38,16 @@ export const Navbar = ({ userAplication }) => {
 
 
 
-          </div> : <a href='/login'>Iniciar sesion</a>}
+          </div> : <div className='btnsLogOut'>
+
+            <a href="/login" className='iniciarSesion'>Iniciar Sesion</a>
+
+            <a href="/register" className='RegisterBtn'>Registrarse</a>
+            
+            
+            
+            
+             </div>}
 
 
 

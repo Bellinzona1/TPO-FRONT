@@ -1,6 +1,6 @@
 import axios from "axios";
 import { authHeader } from "./Auth.service";
-const API_URL = 'http://localhost:8080/';
+const API_URL = 'https://tpo-back.onrender.com/';
 
 class CategoriesService {
     getCategories() {
