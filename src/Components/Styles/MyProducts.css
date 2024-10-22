@@ -1,0 +1,41 @@
+.MyProducts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.Myproduct{
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.MyProducts h1 {
+    font-size: 1.6rem;
+}
+
+.MyProducts .Actions{
+    display: flex;
+    position: absolute;
+    flex-direction: row;
+    justify-content: space-between;
+    right: 15px;
+    bottom: 15px;
+    
+}
+
+.Actions span{
+    margin: 0 8px;
+    padding: 5px 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+}
+
+.editProduct{
+    background-color: #E67B07;
+}
+
+.DeleteProduct{
+    background-color: red;
+}

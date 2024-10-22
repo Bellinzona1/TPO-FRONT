@@ -38,6 +38,7 @@ function logOut(){
 async function CurrentUser (){
     const userAplication = localStorage.getItem('userAplication');  
     const response = await axios.get(API_URL +"User/username/" + userAplication, {headers: authHeader()})
+    console.log(response)
     return response
 
 

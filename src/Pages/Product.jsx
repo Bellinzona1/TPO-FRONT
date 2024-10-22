@@ -14,6 +14,7 @@ export const Product = () => {
       try {
         const response = await ProductsService.getArticleById(id); 
         console.log(response.data)
+        setProduct(response.data)
       } catch (err) {
         setError(err);
       } finally {
@@ -35,7 +36,7 @@ export const Product = () => {
 
             <div className="productImgDetail">
 
-                <img src={product.image} alt="" />
+                <img src={product?.image} alt="" />
 
 
 

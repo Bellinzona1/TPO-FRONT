@@ -17,6 +17,7 @@ export const Products = () => {
         const responseCategories = await CategoriesService.getCategories();
         setArticles(response.data);
         setCategories(responseCategories.data);
+        console.log(responseCategories.data)
       } catch (err) {
         setError(err);
       } finally {
@@ -36,7 +37,6 @@ export const Products = () => {
         <div className="categoriesContainer">
           <h2 className='tituloCat'>Categories</h2>
 
-          {/* Renderizado dinámico de categorías */}
           {categories.map((category) => (
             <div key={category.id} className="Category">
               <img src={category.image} alt={category.name} />

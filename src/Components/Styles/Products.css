@@ -12,8 +12,9 @@
     width: 70%;
     height: 70vh;
     overflow-y: scroll;
-    align-items: center;
+    align-items: start;
     justify-content: center;
+   
     flex-wrap: wrap;
     
    
