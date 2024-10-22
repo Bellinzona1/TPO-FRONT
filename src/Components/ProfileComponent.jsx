@@ -18,6 +18,7 @@ export const ProfileComponent = ({ userAplication }) => {
       
       <a href="">Mi perfil</a>
       <a href="/MyProducts">Mis productos</a>
+      <a href="/Cart">Cart</a>
       
       <button>Salir</button>
     </div>

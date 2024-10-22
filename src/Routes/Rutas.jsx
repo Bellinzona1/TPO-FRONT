@@ -5,15 +5,17 @@ import { Login } from '../Pages/Login';
 import { Register } from '../Pages/Register';
 import { Product } from '../Pages/Product';
 import { MyProducts } from '../Pages/MyProducts'; 
+import { Cart } from '../Pages/Cart';
 
-export const Rutas = ({ userAplication }) => {
+export const Rutas = ({ userAplication,addToCart, cart, setCart }) => {
   return (
     <BrowserRouter>
       <Routes>
         
         {userAplication ? (
           <>
-            <Route path='/Product/:id' element={<Product />} />
+            <Route path='/Product/:id' element={<Product addToCart={addToCart}  />} />
+            <Route path='/Cart' element={<Cart cart={cart} setCart={setCart} userAplication={userAplication}></Cart>} />
             <Route path='/MyProducts' element={<MyProducts userAplication={userAplication} />} /> 
             <Route path='/' element={<Home />} />
             
