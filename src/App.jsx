@@ -17,9 +17,7 @@ function App() {
         setUserAplication(response.data)
         console.log(response.data)
 
-      } catch {
-
-      }
+      } catch { /* empty */ }
 
       
     }

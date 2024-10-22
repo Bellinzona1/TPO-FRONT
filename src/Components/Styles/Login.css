@@ -1,18 +1,21 @@
-/* Contenedor principal del login */
 .login-container {
   max-width: 450px;
-  margin: 50px auto;
+  margin: 100px auto; 
   padding: 30px;
   background-color: #ffffffb4;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   font-family: 'Arial', sans-serif;
+  text-align: center; 
 }
 
-/* Título */
+.login-container h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
 
 
-/* Campos de entrada */
 input {
   width: 100%;
   padding: 12px;
@@ -21,22 +24,25 @@ input {
   border-radius: 6px;
   font-size: 1rem;
   transition: border-color 0.3s ease;
+  box-sizing: border-box; 
 }
+
 
 input:focus {
   border-color: #007bff;
   outline: none;
 }
 
-/* Etiquetas */
+
 label {
   display: block;
   margin-bottom: 8px;
   font-size: 1rem;
   color: #555;
+  text-align: left; 
 }
 
-/* Botón de envío */
+
 button {
   width: 100%;
   padding: 12px;
@@ -53,8 +59,6 @@ button:hover {
   background-color: #218838;
 }
 
-
-/* Ajustes para pantallas pequeñas */
 @media (max-width: 768px) {
   .login-container {
     padding: 20px;

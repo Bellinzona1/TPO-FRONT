@@ -13,7 +13,7 @@ export const Navbar = ({ userAplication }) => {
       <div className="containerNav">
         <div className="containerLogo">
           <img className='imgLogo' src="https://cdn-icons-png.flaticon.com/512/860/860810.png" alt="" />
-          <h1>MarketPlaceX</h1>
+          <h1>ElectricThings</h1>
         </div>
         <div className="options">
           <a href="">Home</a>
@@ -47,7 +47,7 @@ export const Navbar = ({ userAplication }) => {
             
             
             
-             </div>}
+            </div>}
 
 
 

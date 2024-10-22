@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import "../Components/Styles/Login.css";
 import { login } from '../Services/Auth.service';
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
   const [username, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
+  const navigate = useNavigate();
 
 
   const handleSubmit = (e) => {
@@ -28,6 +29,8 @@ export const Login = () => {
     login({ username, password })
       .then(response => {
         console.log("Login successful:", response);
+
+        navigate('/')
         
       })
       .catch(err => {
@@ -38,7 +41,7 @@ export const Login = () => {
 
   return (
     <div className="login-container">
-      <h2>LOGIN</h2>
+      <h2>Iniciar Sesión</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email">Email:</label>

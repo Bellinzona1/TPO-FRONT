@@ -19,11 +19,10 @@
 .Navbar .containerNav .containerLogo {
     display: flex;
     align-items: center;
-   
     color: white;
     width: 40%;
     height: 50px;
-   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 0.5rem;
 }
 
@@ -47,7 +46,6 @@
     gap: 40px;
     position: relative;
     width: 35%;
-   
 }
 
 
@@ -106,7 +104,7 @@
 .btnsLogOut{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     width: 50%;
 }
 
@@ -114,7 +112,7 @@
     padding: 8px 8px;
     border-radius: 10px;
     background-color: #ffffff;
-    margin: 0 10px;
+    margin: 0 11px;
     color: black ; 
     font-size: 0.8rem;
 }
@@ -127,3 +125,4 @@
 .btnsLogOut .RegisterBtn{
     color: black !important;
 }
+
