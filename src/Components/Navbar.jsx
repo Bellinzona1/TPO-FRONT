@@ -23,16 +23,7 @@ export const Navbar = ({ userAplication }) => {
         </div>
         <div className="options">
           <a href="/">Home</a>
-          <div className="productsOptions">
-            <a href="#" onClick={toggleSubmenu}>Products Listing</a>
-            {showSubmenu && (
-              <div className="submenu">
-                <a href="#">opcion 1</a>
-                <a href="#">opcion 2</a>
-                <a href="#">opcion 3</a>
-              </div>
-            )}
-          </div>
+
 
           {userAplication ? (
             <div className="UserNav" onClick={toggleProfile}>

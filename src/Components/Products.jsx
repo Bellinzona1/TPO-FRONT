@@ -4,7 +4,7 @@ import CategoriesService from '../Services/Categories.service';
 import "./Styles/Products.css";
 import { Link } from 'react-router-dom';
 
-export const Products = () => {
+export const Products = ({ searchTerm }) => {
   const [articles, setArticles] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,7 +17,6 @@ export const Products = () => {
         const responseCategories = await CategoriesService.getCategories();
         setArticles(response.data);
         setCategories(responseCategories.data);
-        console.log(responseCategories.data)
       } catch (err) {
         setError(err);
       } finally {
@@ -31,12 +30,16 @@ export const Products = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
+  // Filtra los artículos según el término de búsqueda
+  const filteredArticles = articles.filter(article =>
+    article.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className='ProductosSector'>
       <div className="sectionsProducts">
         <div className="categoriesContainer">
           <h2 className='tituloCat'>Categories</h2>
-
           {categories.map((category) => (
             <div key={category.id} className="Category">
               <img src={category.image} alt={category.name} />
@@ -47,7 +50,7 @@ export const Products = () => {
       </div>
 
       <div className="products">
-        {articles.map((article) => (
+        {filteredArticles.map((article) => (
           <div key={article.id} className='Product'>
             <div className="imgProduct">
               <img src={article.image} alt={article.name} />
@@ -55,9 +58,8 @@ export const Products = () => {
             <h3>{article.name}</h3>
             <p>$ {article.price}</p>
             <Link to={`/Product/${article.id}`}>
-        <button>Quick View</button>
-      </Link>
-            
+              <button>Quick View</button>
+            </Link>
           </div>
         ))}
       </div>

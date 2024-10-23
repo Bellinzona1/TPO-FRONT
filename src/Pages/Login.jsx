@@ -44,7 +44,7 @@ export const Login = () => {
       <h2>Iniciar Sesión</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="username">Username:</label>
           <input 
             type="text" 
             id="username" 

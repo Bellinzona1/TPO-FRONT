@@ -9,7 +9,6 @@ export const Product = ({ addToCart }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -28,16 +27,15 @@ export const Product = ({ addToCart }) => {
 
   const handleAddToCart = () => {
     if (product) {
-      // Crear el objeto del producto con nombre, precio y cantidad
       const cartItem = {
         name: product.name,
         price: product.price,
         content: product.content,
-        img : product.image,
+        img: product.image,
         quantity: 1,
       };
-      console.log("se agrego")
-      addToCart(cartItem); // Llamar a la función que se pasó por props
+      console.log("se agrego");
+      addToCart(cartItem);
     }
   };
 
@@ -56,9 +54,6 @@ export const Product = ({ addToCart }) => {
         <div className='ProductDetail'>
           <h2>{product?.name}</h2>
           <p>Price: ${product?.price}</p>
-
-  
-
           <button onClick={handleAddToCart}>Add to Cart</button>
         </div>
       </div>

@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../Components/Styles/Home.css';
 import { Products } from '../Components/Products';
 
 export const Home = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
   return (
     <div className='Home'>
       <div className="search-container">
@@ -10,6 +16,8 @@ export const Home = () => {
           type="text" 
           className="search-input" 
           placeholder='Search for products...' 
+          value={searchTerm} 
+          onChange={handleSearch}
         />
         <button className="search-button">
           <img 
@@ -18,7 +26,7 @@ export const Home = () => {
           />
         </button>
       </div>
-      <Products />
+      <Products searchTerm={searchTerm} />
     </div>
   );
 }
