@@ -41,7 +41,7 @@ export const Product = ({ addToCart }) => {
         img: product.image,
         quantity: 1,
       };
-      console.log("se agrego")
+      console.log("Se agrego")
       addToCart(cartItem); // Llamar a la función que se pasó por props
     }
   };
@@ -67,6 +67,7 @@ export const Product = ({ addToCart }) => {
         <div className='ProductDetail'>
           <h2>{product?.name}</h2>
           <p>Price: ${product?.price}</p>
+          <p className="product-description">{description}</p>
 
   
 
