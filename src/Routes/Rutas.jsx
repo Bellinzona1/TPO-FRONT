@@ -6,6 +6,7 @@ import { Register } from '../Pages/Register';
 import { Product } from '../Pages/Product';
 import { MyProducts } from '../Pages/MyProducts'; 
 import { Cart } from '../Pages/Cart';
+import UploadProduct from '../Pages/UploadProduct';
 
 export const Rutas = ({ userAplication,addToCart, cart, setCart }) => {
   return (
@@ -17,6 +18,7 @@ export const Rutas = ({ userAplication,addToCart, cart, setCart }) => {
             <Route path='/Product/:id' element={<Product addToCart={addToCart}  />} />
             <Route path='/Cart' element={<Cart cart={cart} setCart={setCart} userAplication={userAplication}></Cart>} />
             <Route path='/MyProducts' element={<MyProducts userAplication={userAplication} />} /> 
+            <Route path='/UploadProduct' element={<UploadProduct userAplication= {userAplication}></UploadProduct>} />
             <Route path='/' element={<Home />} />
             
           </>

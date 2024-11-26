@@ -9,6 +9,10 @@ class ArticleService {
     }
 
 
+    PostArticle(content) {
+        return axios.get(API_URL + 'Article/add', content, { headers: authHeader() });
+    }
+
     getArticleById(id) {
         return axios.get(API_URL + 'Article/' + id, { headers: authHeader() });
     }

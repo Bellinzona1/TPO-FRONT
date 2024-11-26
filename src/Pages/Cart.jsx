@@ -1,31 +1,79 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'; // Importar useDispatch y useSelector
 import '../Components/Styles/Cart.css';
+import UserService from '../Services/User.service';
 
-export const Cart = ({ cart, setCart, userAplication }) => {
-    const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+export const Cart = ({ userAplication }) => {
+    const dispatch = useDispatch(); // Para despachar acciones
+    const cart = useSelector(state => state.cart || []); // Asegurarse de que cart sea un arreglo vacío si no está definido
+    const [discountCode, setDiscountCode] = useState('');
+    const [discountApplied, setDiscountApplied] = useState(false);
 
+    console.log(cart)
+
+    const totalWithoutDiscount = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+    // Aplicamos el descuento solo si el código es "UADE10" y no ha sido aplicado ya
+    const total = discountCode === 'UADE10' && discountApplied
+        ? totalWithoutDiscount - 100
+        : totalWithoutDiscount;
+
+    // Función para aumentar la cantidad de un producto en el carrito
     const increaseQuantity = (itemName) => {
-        setCart((prevCart) =>
-            prevCart.map((item) =>
-                item.name === itemName ? { ...item, quantity: item.quantity + 1 } : item
-            )
-        );
+        dispatch({
+            type: 'UPDATE_CART',
+            payload: {
+                itemName,
+                action: 'increase'
+            }
+        });
     };
 
+    // Función para disminuir la cantidad de un producto en el carrito
     const decreaseQuantity = (itemName) => {
-        setCart((prevCart) =>
-            prevCart.reduce((acc, item) => {
-                if (item.name === itemName) {
-                    const newQuantity = item.quantity - 1;
-                    if (newQuantity > 0) {
-                        acc.push({ ...item, quantity: newQuantity });
-                    }
-                } else {
-                    acc.push(item);
-                }
-                return acc;
-            }, [])
-        );
+        dispatch({
+            type: 'UPDATE_CART',
+            payload: {
+                itemName,
+                action: 'decrease'
+            }
+        });
+    };
+
+    // Maneja el cambio en el código de descuento
+    const handleDiscountChange = (e) => {
+        setDiscountCode(e.target.value);
+    };
+
+    // Aplica el descuento si el código es correcto
+    const applyDiscount = () => {
+        if (discountCode === 'UADE10' && !discountApplied) {
+            setDiscountApplied(true);
+        } else if (discountCode !== 'UADE10') {
+            alert('Invalid discount code');
+        }
+    };
+
+    // Maneja el proceso de pago
+    const handleCheckout = async () => {
+        const checkoutData = {
+            cartItems: cart.map(item => ({
+                name: item.name,
+                price: item.price,
+                quantity: item.quantity,
+            })),
+            discountApplied: discountApplied ? '-100 applied' : '0 applied',
+            total: total.toFixed(2),
+        };
+
+        try {
+            const response = await UserService.postCheckout(checkoutData);
+            console.log('Checkout successful:', response.data);
+            alert('Checkout successful!'); // Ejemplo de notificación
+        } catch (error) {
+            console.error('Error during checkout:', error);
+            alert('Checkout failed. Please try again.');
+        }
     };
 
     return (
@@ -53,52 +101,33 @@ export const Cart = ({ cart, setCart, userAplication }) => {
                 )}
             </div>
             <div className="userCartInfo">
-
                 <div className="infoUserCart">
-
                     <input type="text" defaultValue={userAplication.firstname} />
                     <input type="text" defaultValue={userAplication.surname} />
-
-                    
-                    
-
-                   
-
-
                 </div>
 
                 <div className="demasinfo">
-
-                <input type="text" placeholder='Email' defaultValue={userAplication.email} />
-
-                <input type="number" placeholder='Phone Number'  />
-
-                <input type="number" placeholder='Adress'  />
-
-                <input type="number" placeholder='Credit card'  />
-
-
-                <div className="infoUserCart">
-
-                    <input type="text" placeholder='Postal Code'  />
-                    <input type="text" placeholder='Region'  />
-
+                    <input type="text" placeholder='Email' defaultValue={userAplication.email} />
+                    <input type="number" placeholder='Phone Number' />
+                    <input type="number" placeholder='Credit card' />
                     
-                
+                    <div className="infoUserCart">
+                        <input type="text" placeholder='Postal Code' />
+                        <input type="text" placeholder='Region' />
+                    </div>
 
+                    <input
+                        type="text"
+                        placeholder='Discount code'
+                        value={discountCode}
+                        onChange={handleDiscountChange}
+                    />
+                    <button onClick={applyDiscount}>Apply Discount</button>
                 </div>
 
-
-                
-                    
-
-
-
-                </div>
-                
-                <p>Total: ${total.toFixed(2)}</p>
-
-                <button>Proccess to Payment</button>
+                <p className='totalPrice'>Total: ${total.toFixed(2)}</p>
+                {discountApplied && <p className='DiscountAplied'>Descuento aplicado -100</p>}
+                <button onClick={handleCheckout}>Process to Payment</button>
             </div>
         </div>
     );

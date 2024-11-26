@@ -5,17 +5,21 @@ import "./Styles/Products.css";
 import { Link } from 'react-router-dom';
 
 export const Products = ({ searchTerm }) => {
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState([]); 
+  const [allArticles, setAllArticles] = useState([]); 
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null); 
 
   useEffect(() => {
-    const fetchArticles = async () => {
+    const fetchData = async () => {
       try {
-        const response = await ProductsService.getArticle();
+        const responseArticles = await ProductsService.getArticle();
         const responseCategories = await CategoriesService.getCategories();
-        setArticles(response.data);
+        
+        setAllArticles(responseArticles.data); 
+        setArticles(responseArticles.data); 
         setCategories(responseCategories.data);
       } catch (err) {
         setError(err);
@@ -24,16 +28,22 @@ export const Products = ({ searchTerm }) => {
       }
     };
 
-    fetchArticles();
+    fetchData();
   }, []);
+
+  // Filtrado por categoría
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    setArticles(category.articleList); 
+  };
+
+  // Filtrado por término de búsqueda
+  const filteredArticles = selectedCategory
+    ? articles.filter(article => article.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    : allArticles.filter(article => article.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
-
-  // Filtra los artículos según el término de búsqueda
-  const filteredArticles = articles.filter(article =>
-    article.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   return (
     <div className='ProductosSector'>
@@ -41,7 +51,11 @@ export const Products = ({ searchTerm }) => {
         <div className="categoriesContainer">
           <h2 className='tituloCat'>Categories</h2>
           {categories.map((category) => (
-            <div key={category.id} className="Category">
+            <div 
+              key={category.id} 
+              className={`Category ${selectedCategory?.id === category.id ? 'active' : ''}`}
+              onClick={() => handleCategoryClick(category)} 
+            >
               <img src={category.image} alt={category.name} />
               <p>{category.name}</p>
             </div>
@@ -50,6 +64,7 @@ export const Products = ({ searchTerm }) => {
       </div>
 
       <div className="products">
+        {filteredArticles.length === 0 && <p>No articles available.</p>}
         {filteredArticles.map((article) => (
           <div key={article.id} className='Product'>
             <div className="imgProduct">

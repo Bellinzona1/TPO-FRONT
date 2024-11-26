@@ -59,6 +59,7 @@ export const MyProducts = ({userAplication}) => {
       </div>
 
 
+        <a href="/UploadProduct">Subir Producto</a>
 
 
         {showProductAction && <ProductAction Product={product} Action={action} SetShowProductAction={SetShowProductAction}></ProductAction>}

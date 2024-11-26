@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductsService from '../Services/Products.service';
 import '../Components/Styles/Product.css';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../Redux/cartSlice'; // Ruta al archivo del slice
+
 
 const productDescriptions = {
   6: "Enjoy freshness and organization with this modern refrigerator. Its large interior space and smart compartments allow you to store all your food efficiently. With rapid cooling technology and low energy consumption, it is the perfect solution to keep your products fresher for longer. Ideal for families looking for the best in refrigeration.",
@@ -10,12 +13,12 @@ const productDescriptions = {
   11: "Immerse yourself in an incomparable viewing experience with this next-generation television. Enjoy sharp 4K resolution images and vibrant colors that will make you feel like you're right in the action. With its ultra-slim and elegant design, it adapts perfectly to any space, while its intelligent system gives you access to all your favorite entertainment apps.",
 };
 
-export const Product = ({ addToCart }) => {
+export const Product = () => {
   const { id } = useParams(); 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+  const dispatch = useDispatch(); // Hook para despachar acciones
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -41,11 +44,13 @@ export const Product = ({ addToCart }) => {
         img: product.image,
         quantity: 1,
       };
-      console.log("Se agrego")
-      addToCart(cartItem); // Llamar a la función que se pasó por props
+      dispatch(addToCart(cartItem)); // Despacha la acción
+      console.log("Added to cart:", cartItem); // Verifica el objeto que se agrega
+
     }
   };
 
+  // Renderizado del componente
   if (loading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error-message">Error: {error.message}</div>;
 
@@ -68,9 +73,6 @@ export const Product = ({ addToCart }) => {
           <h2>{product?.name}</h2>
           <p>Price: ${product?.price}</p>
           <p className="product-description">{description}</p>
-
-  
-
           <button onClick={handleAddToCart}>Add to Cart</button>
         </div>
       </div>

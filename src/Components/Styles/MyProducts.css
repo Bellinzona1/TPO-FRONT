@@ -24,6 +24,12 @@
     
 }
 
+.BtnSubirProduct{
+    width: 50%;
+    margin:  40px auto;
+}
+
+
 .Actions span{
     margin: 0 8px;
     padding: 5px 8px;
