@@ -15,12 +15,22 @@ export const ProfileComponent = ({ userAplication }) => {
     <div className={`ProfileComponent ${isLoaded ? 'loaded' : ''}`}>
       <p>{userAplication.username}</p>
 
-      
-      <a href="">Mi perfil</a>
-      <a href="/MyProducts">Mis productos</a>
-      <a href="/Cart">Cart</a>
-      
-      <button>Salir</button>
+      <div className="profile-links">
+        <a href="">
+          <img src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png" alt="My Profile Icon" />
+          My Profile
+        </a>
+        <a href="/MyProducts">
+          <img src="https://cdn-icons-png.flaticon.com/512/743/743131.png" alt="My Products Icon" />
+          My Products
+        </a>
+        <a href="/Cart">
+          <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Cart Icon" />
+          Cart
+        </a>
+      </div>
+
+      <button>Sign out</button>
     </div>
   );
 };

@@ -22,8 +22,14 @@ export const Navbar = ({ userAplication }) => {
           <h1>ElectricThings</h1>
         </div>
         <div className="options">
-          <a href="/">Home</a>
-
+          <a href="/" className="home-link">
+            <img 
+              src="https://static.vecteezy.com/system/resources/thumbnails/049/773/756/small_2x/a-minimal-home-logo-icon-png.png" 
+              alt="Home Icon" 
+              className="home-icon"
+            />
+            Home
+          </a>
 
           {userAplication ? (
             <div className="UserNav" onClick={toggleProfile}>
