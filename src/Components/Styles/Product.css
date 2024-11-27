@@ -60,6 +60,15 @@
   font-size: 20px;
   margin-bottom: 5px;
   color: #333;
+<<<<<<< HEAD
+}
+
+.ProductDetail p:first-of-type {
+  color: black; 
+  font-size: 18px; 
+  font-weight: bold; 
+=======
+>>>>>>> e7ef94f2fc191aeac6c383cf1f0f268c45a92aaf
 }
 
 .product-description {
@@ -67,12 +76,21 @@
   color: #858080;
   margin-top: 5px;
   line-height: 1.4;
+<<<<<<< HEAD
+=======
 }
 
+<<<<<<< HEAD
 .ProductDetail p:first-of-type {
   color: black; 
   font-size: 18px; 
   font-weight: bold; 
+=======
+.product-price {
+  color: #000; /* Cambia el color del precio a negro */
+  font-weight: bold; /* Hace que el texto sea más legible */
+>>>>>>> e7ef94f2fc191aeac6c383cf1f0f268c45a92aaf
+>>>>>>> e3db76f07613696616384343942030e2d28b4cb7
 }
 
 button {
