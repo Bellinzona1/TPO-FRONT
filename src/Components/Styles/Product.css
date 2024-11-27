@@ -1,3 +1,30 @@
+/* Spinner */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ocupa toda la pantalla */
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(0, 0, 0, 0.1); /* Color de fondo del spinner */
+  border-top: 5px solid #ff6f61; /* Color animado */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Producto */
 .product-container {
   display: flex;
   flex-direction: column;
@@ -33,12 +60,15 @@
   font-size: 20px;
   margin-bottom: 5px;
   color: #333;
+<<<<<<< HEAD
 }
 
 .ProductDetail p:first-of-type {
   color: black; 
   font-size: 18px; 
   font-weight: bold; 
+=======
+>>>>>>> e7ef94f2fc191aeac6c383cf1f0f268c45a92aaf
 }
 
 .product-description {
@@ -46,6 +76,14 @@
   color: #858080;
   margin-top: 5px;
   line-height: 1.4;
+<<<<<<< HEAD
+=======
+}
+
+.product-price {
+  color: #000; /* Cambia el color del precio a negro */
+  font-weight: bold; /* Hace que el texto sea más legible */
+>>>>>>> e7ef94f2fc191aeac6c383cf1f0f268c45a92aaf
 }
 
 button {
@@ -60,4 +98,37 @@ button {
 
 button:hover {
   background-color: #ff5a3f;
+}
+
+.confirmation-message {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  animation: fade-in-out 3s ease-in-out; /* Aparece y desaparece con animación */
+  z-index: 1000;
+}
+
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
 }
