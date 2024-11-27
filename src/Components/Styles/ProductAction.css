@@ -1,0 +1,70 @@
+.ProductAction{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 20px 0px;
+    position: absolute;
+    background-color: #636060;
+    border-radius: 15px;
+    top: 170px;
+    overflow: hidden;
+}
+
+.editSector h1{
+    text-align: center;
+    
+}
+
+
+
+.ProductAction form{
+    width: 80%;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    
+    
+}
+
+
+
+.ProductAction form input{
+    width: 96%;
+    background-color: white;
+    border-style: none;
+    color: black;
+}
+
+.ProductAction form label{
+    justify-content: flex-start;
+    color: white;
+}
+
+.ProductAction .Cerrar{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 10px 13px;
+    border-radius: 5px;
+    background-color: red;
+    cursor: pointer;
+}
+
+
+
+.deleteSector{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 1.3rem;
+    padding: 30px 0;
+}
+
+
+.deleteSector .DeleteBtn{
+    padding: 5px;
+    width: 40%;
+    margin: 10px auto;
+    margin-top: 30px;
+    background-color: red;
+}
