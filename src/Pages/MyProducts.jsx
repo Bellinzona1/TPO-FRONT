@@ -23,11 +23,7 @@ export const MyProducts = ({userAplication}) => {
       setProduct(product)
       setAction(action)
       SetShowProductAction(true)
-
     }
-
-
-
 
 
   return (
@@ -51,8 +47,6 @@ export const MyProducts = ({userAplication}) => {
             </div>
             <h3>{article.name}</h3>
             <p>$ {article.price}</p>
-       
-     
             
           </div>
         ))}
@@ -63,13 +57,6 @@ export const MyProducts = ({userAplication}) => {
 
 
         {showProductAction && <ProductAction Product={product} Action={action} SetShowProductAction={SetShowProductAction}></ProductAction>}
-
-        
-
-
-
-
-
 
     </div>
   )

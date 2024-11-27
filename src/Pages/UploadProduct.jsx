@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import ProductsService from '../Services/Products.service';
+import '../Components/Styles/UploadProduct.css';
 
-const UploadProduct = ({userAplication}) => {
+const UploadProduct = ({ userAplication }) => {
   const [formData, setFormData] = useState({
     name: '',
     content: '',
@@ -9,7 +10,7 @@ const UploadProduct = ({userAplication}) => {
     image: '',
     price: 0,
     user: {
-      id: userAplication?.id, 
+      id: userAplication?.id,
     },
     category: {
       id: 1, // Categoría por defecto (puede cambiar con el select)
@@ -27,7 +28,7 @@ const UploadProduct = ({userAplication}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await ProductsService.PostArticle(formData); 
+      const response = await ProductsService.PostArticle(formData);
       console.log('Artículo publicado exitosamente:', response.data);
     } catch (error) {
       console.error('Error al publicar el artículo:', error.response?.data || error.message);
@@ -35,8 +36,8 @@ const UploadProduct = ({userAplication}) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Subir Producto</h2>
+    <form className="formulario-publicar-producto" onSubmit={handleSubmit}>
+      <h2>Publicar Producto</h2>
 
       <div>
         <label htmlFor="name">Nombre del producto</label>
@@ -47,17 +48,19 @@ const UploadProduct = ({userAplication}) => {
           value={formData.name}
           onChange={handleChange}
           required
+          className="input-general"
         />
       </div>
 
       <div>
-        <label htmlFor="content">Descripción</label>
+        <label htmlFor="content">Descripción corta</label>
         <textarea
           id="content"
           name="content"
           value={formData.content}
           onChange={handleChange}
           required
+          className="textarea-general"
         />
       </div>
 
@@ -70,6 +73,7 @@ const UploadProduct = ({userAplication}) => {
           value={formData.price}
           onChange={handleChange}
           required
+          className="input-general"
         />
       </div>
 
@@ -82,10 +86,11 @@ const UploadProduct = ({userAplication}) => {
           value={formData.image}
           onChange={handleChange}
           required
+          className="input-general"
         />
       </div>
 
-      <div>
+      <div className="checkbox-label">
         <label htmlFor="onSale">
           <input
             type="checkbox"
@@ -106,8 +111,9 @@ const UploadProduct = ({userAplication}) => {
           value={formData.category.id}
           onChange={(e) => setFormData({
             ...formData,
-            category: { id: Number(e.target.value) }
+            category: { id: Number(e.target.value) },
           })}
+          className="select-general"
         >
           <option value={1}>Furniture</option>
           <option value={2}>Electronics</option>
@@ -117,7 +123,7 @@ const UploadProduct = ({userAplication}) => {
         </select>
       </div>
 
-      <button type="submit">Subir Producto</button>
+      <button type="submit" className="button-submit">Subir Producto</button>
     </form>
   );
 };

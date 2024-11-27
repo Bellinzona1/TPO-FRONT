@@ -5,10 +5,9 @@ export const ProfileComponent = ({ userAplication }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Activa la animación después de que el componente se ha montado
     setTimeout(() => {
       setIsLoaded(true);
-    }, 100); // Un ligero retraso para asegurar que la transición se vea
+    }, 100); 
   }, []);
 
   return (
@@ -16,11 +15,11 @@ export const ProfileComponent = ({ userAplication }) => {
       <p>{userAplication.username}</p>
 
       
-      <a href="">Mi perfil</a>
-      <a href="/MyProducts">Mis productos</a>
+      <a href="/MyProfile">My profile</a>
+      <a href="/MyProducts">My products</a>
       <a href="/Cart">Cart</a>
       
-      <button>Salir</button>
+      <button>Sign out</button>
     </div>
   );
 };

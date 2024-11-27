@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductsService from '../Services/Products.service';
 import '../Components/Styles/Product.css';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../Redux/cartSlice'; // Ruta al archivo del slice
 
 const productDescriptions = {
   6: "Enjoy freshness and organization with this modern refrigerator. Its large interior space and smart compartments allow you to store all your food efficiently. With rapid cooling technology and low energy consumption, it is the perfect solution to keep your products fresher for longer. Ideal for families looking for the best in refrigeration.",
@@ -10,17 +12,18 @@ const productDescriptions = {
   11: "Immerse yourself in an incomparable viewing experience with this next-generation television. Enjoy sharp 4K resolution images and vibrant colors that will make you feel like you're right in the action. With its ultra-slim and elegant design, it adapts perfectly to any space, while its intelligent system gives you access to all your favorite entertainment apps.",
 };
 
-export const Product = ({ addToCart }) => {
-  const { id } = useParams();
+export const Product = () => {
+  const { id } = useParams(); 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showNotification, setShowNotification] = useState(false); // Estado para la notificación
+  const dispatch = useDispatch(); // Hook para despachar acciones
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await ProductsService.getArticleById(id);
+        const response = await ProductsService.getArticleById(id); 
         setProduct(response.data);
       } catch (err) {
         setError(err);
@@ -41,27 +44,27 @@ export const Product = ({ addToCart }) => {
         img: product.image,
         quantity: 1,
       };
-      addToCart(cartItem);
+      dispatch(addToCart(cartItem)); // Despacha la acción
+      console.log("Added to cart:", cartItem); // Verifica el objeto que se agrega
 
-      setShowConfirmation(true);
-
+      setShowNotification(true); // Muestra la notificación
       setTimeout(() => {
-        setShowConfirmation(false);
+        setShowNotification(false); // Oculta la notificación después de 3 segundos
       }, 3000);
     }
   };
 
-  if (loading) {
-    return (
-      <div className="loading-container">
-        <div className="spinner"></div>
-      </div>
-    );
-  }
-
+  // Renderizado del componente
+  if (loading) return (
+    <div className="loading-container">
+      <div className="spinner"></div>
+    </div>
+  );
+  
   if (error) return <div className="error-message">Error: {error.message}</div>;
 
   const description = productDescriptions[id] || "Descripción no disponible.";
+
   const paragraphs = description.split('. ').map((text, index) => (
     <p key={index}>{text.trim()}{text.endsWith('.') ? '' : '.'}</p>
   ));
@@ -77,21 +80,21 @@ export const Product = ({ addToCart }) => {
       <div className="sector2">
         <div className='ProductDetail'>
           <h2>{product?.name}</h2>
-          <p>Price: <span className="product-price">${product?.price}</span></p>
-
-          <div className="product-description">{paragraphs}</div>
-
+          <p>Price: ${product?.price}</p>
+          <p className="product-description">{description}</p>
           <button onClick={handleAddToCart}>Add to Cart</button>
         </div>
       </div>
 
       <div className="sector3"></div>
-      {/* Mensaje de confirmación */}
-      {showConfirmation && (
+
+      {/* Notificación de agregado al carrito */}
+      {showNotification && (
         <div className="confirmation-message">
-          ✅ Product added to cart successfully!
+          Producto agregado al carrito.
         </div>
       )}
     </div>
   );
 };
+
