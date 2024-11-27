@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import ProductsService from '../Services/Products.service';
 import '../Components/Styles/Product.css';
 import { useDispatch } from 'react-redux';
-import { addToCart } from '../Redux/cartSlice'; // Ruta al archivo del slice
+import { addToCart } from '../Redux/cartSlice';
 
 const productDescriptions = {
   6: "Enjoy freshness and organization with this modern refrigerator. Its large interior space and smart compartments allow you to store all your food efficiently. With rapid cooling technology and low energy consumption, it is the perfect solution to keep your products fresher for longer. Ideal for families looking for the best in refrigeration.",
@@ -17,8 +17,8 @@ export const Product = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showNotification, setShowNotification] = useState(false); // Estado para la notificación
-  const dispatch = useDispatch(); // Hook para despachar acciones
+  const [showNotification, setShowNotification] = useState(false); 
+  const dispatch = useDispatch(); 
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -44,17 +44,17 @@ export const Product = () => {
         img: product.image,
         quantity: 1,
       };
-      dispatch(addToCart(cartItem)); // Despacha la acción
-      console.log("Added to cart:", cartItem); // Verifica el objeto que se agrega
+      dispatch(addToCart(cartItem)); 
+      console.log("Added to cart:", cartItem); 
 
-      setShowNotification(true); // Muestra la notificación
+      setShowNotification(true); 
       setTimeout(() => {
-        setShowNotification(false); // Oculta la notificación después de 3 segundos
+        setShowNotification(false); 
       }, 3000);
     }
   };
 
-  // Renderizado del componente
+
   if (loading) return (
     <div className="loading-container">
       <div className="spinner"></div>
@@ -88,7 +88,7 @@ export const Product = () => {
 
       <div className="sector3"></div>
 
-      {/* Notificación de agregado al carrito */}
+
       {showNotification && (
         <div className="confirmation-message">
           Producto agregado al carrito.
@@ -97,4 +97,3 @@ export const Product = () => {
     </div>
   );
 };
-
